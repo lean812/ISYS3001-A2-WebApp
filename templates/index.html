@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task List App (ISYS3001 A2)</title>
+    <!-- 引入static文件夹下的style.css样式文件 -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <!-- 容器：居中显示内容 -->
+    <div class="container">
+        <h1>Simple Task List</h1>
+        <!-- 添加任务表单：提交到/add-task路由（POST请求） -->
+        <form action="/add-task" method="POST">
+            <!-- 任务输入框：required表示不能为空 -->
+            <input type="text" name="task" placeholder="Enter a new task..." required>
+            <!-- 提交按钮 -->
+            <button type="submit">Add Task</button>
+        </form>
+        <!-- 任务列表：显示所有任务 -->
+        <ul class="task-list">
+            <!-- Flask模板语法：循环遍历tasks列表 -->
+            {% for task in tasks %}
+                <li>
+                    {{ task }}  <!-- 显示任务内容 -->
+                    <!-- 删除链接：传递当前任务的索引（loop.index0表示从0开始的索引） -->
+                    <a href="/delete-task/{{ loop.index0 }}">Delete</a>
+                </li>
+            {% else %}
+                <!-- 若tasks为空，显示提示 -->
+                <li>No tasks yet. Add a task above!</li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>

@@ -1,0 +1,4 @@
+# ISYS3001 A2 Web App 依赖包清单
+# 版本号需明确，避免兼容性问题
+Flask==2.3.3          # 后端Flask框架（核心依赖）
+Werkzeug==2.3.7       # Flask依赖的Web服务器工具（处理HTTP请求）
